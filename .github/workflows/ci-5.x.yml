@@ -17,10 +17,13 @@ jobs:
             jdk: 11
           - os: ubuntu-latest
             jdk: 11
-            profile: '-PtestNativeTransport'
+            profile: '-PNativeEpoll'
           - os: ubuntu-latest
             jdk: 11
-            profile: '-PtestDomainSockets'
+            profile: '-PNativeIoUring'
+          - os: ubuntu-latest
+            jdk: 11
+            profile: '-PNativeEpoll+DomainSockets'
           - os: ubuntu-latest
             jdk: 21
           - os: windows-latest

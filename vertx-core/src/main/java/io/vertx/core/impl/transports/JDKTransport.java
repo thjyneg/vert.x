@@ -54,7 +54,7 @@ public class JDKTransport implements Transport {
 
   public ChannelFactory<? extends ServerChannel> serverChannelFactory(boolean domainSocket) {
     if (domainSocket) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("The Vertx instance must be created with the preferNativeTransport option set to true to create domain sockets");
     }
     return NioServerSocketChannel::new;
   }
