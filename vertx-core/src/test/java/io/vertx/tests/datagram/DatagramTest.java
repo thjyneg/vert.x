@@ -252,7 +252,7 @@ public class DatagramTest extends VertxTestBase {
 
   @Test
   public void testBroadcast() {
-    if (TRANSPORT != Transport.JDK) {
+    if (TRANSPORT != Transport.NIO) {
       return;
     }
     peer1 = vertx.createDatagramSocket(new DatagramSocketOptions().setBroadcast(true));
@@ -319,7 +319,7 @@ public class DatagramTest extends VertxTestBase {
                                       DatagramSocketOptions options2,
                                       BiConsumer<String, Handler<AsyncResult<Void>>> join,
                                       BiConsumer<String, Handler<AsyncResult<Void>>> leave) {
-    if (TRANSPORT != Transport.JDK) {
+    if (TRANSPORT != Transport.NIO) {
       return;
     }
     Buffer buffer = Buffer.buffer("HELLO");

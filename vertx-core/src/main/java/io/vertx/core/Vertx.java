@@ -20,6 +20,7 @@ import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.file.FileSystem;
 import io.vertx.core.http.*;
 import io.vertx.core.impl.VertxImpl;
+import io.vertx.core.impl.transports.TransportInternal;
 import io.vertx.core.internal.ContextInternal;
 import io.vertx.core.dns.impl.DnsAddressResolverProvider;
 import io.vertx.core.internal.VertxBootstrap;
@@ -118,7 +119,7 @@ public interface Vertx extends Measured {
           tr = Transport.nativeTransport();
         }
         if (tr == null) {
-          tr = Transport.JDK;
+          tr = Transport.NIO;
         }
         bootstrap.transport(tr.implementation());
         return bootstrap;

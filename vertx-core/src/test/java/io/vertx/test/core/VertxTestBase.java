@@ -56,7 +56,7 @@ public class VertxTestBase extends AsyncTestBase {
       String t = transportName.toLowerCase(Locale.ROOT);
       switch (t) {
         case "jdk":
-          transport = Transport.JDK;
+          transport = Transport.NIO;
           break;
         case "kqueue":
           transport = Transport.KQUEUE;
@@ -108,7 +108,7 @@ public class VertxTestBase extends AsyncTestBase {
         };
       }
     } else {
-      transport = Transport.JDK;
+      transport = Transport.NIO;
     }
     TRANSPORT = transport;
   }
@@ -211,7 +211,13 @@ public class VertxTestBase extends AsyncTestBase {
   }
 
   protected Vertx createVertx(VertxOptions options) {
-    return createVertxBuilder(options).build();
+    Vertx vertx = createVertxBuilder(options).build();
+    if (TRANSPORT != Transport.NIO) {
+      if (!vertx.isNativeTransportEnabled()) {
+        fail(vertx.unavailableNativeTransportCause());
+      }
+    }
+    return vertx;
   }
 
   /**

@@ -66,12 +66,13 @@ public interface VertxBuilder {
   VertxBuilder withTracer(VertxTracerFactory factory);
 
   /**
-   * Programmatically set the transport.
+   * Programmatically set the transport, this overrides {@link VertxOptions#setPreferNativeTransport(boolean)}
    *
    * @param transport the transport
    * @return a reference to this, so the API can be used fluently
    */
   @GenIgnore(GenIgnore.PERMITTED_TYPE)
+  @Fluent
   VertxBuilder withTransport(Transport transport);
 
   /**

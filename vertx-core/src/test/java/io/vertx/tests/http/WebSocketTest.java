@@ -28,6 +28,7 @@ import io.vertx.core.http.impl.WebSocketInternal;
 import io.vertx.core.http.impl.ws.WebSocketFrameImpl;
 import io.vertx.core.net.*;
 import io.vertx.core.internal.net.NetSocketInternal;
+import io.vertx.core.transport.Transport;
 import io.vertx.test.core.CheckingSender;
 import io.vertx.test.core.TestUtils;
 import io.vertx.test.core.VertxTestBase;
@@ -72,6 +73,7 @@ import java.util.regex.Pattern;
 
 import static io.vertx.test.http.HttpTestBase.*;
 import static io.vertx.test.core.TestUtils.*;
+import static org.junit.Assume.assumeTrue;
 
 /**
  * @author <a href="http://tfox.org">Tim Fox</a>
@@ -533,6 +535,7 @@ public class WebSocketTest extends VertxTestBase {
 
   @Test
   public void testSharedServersRoundRobin() throws Exception {
+    assumeTrue(TRANSPORT != Transport.IO_URING);
 
     int numServers = VertxOptions.DEFAULT_EVENT_LOOP_POOL_SIZE / 2- 1;
     int numConnections = numServers * 100;

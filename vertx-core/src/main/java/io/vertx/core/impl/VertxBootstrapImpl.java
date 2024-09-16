@@ -12,7 +12,7 @@
 package io.vertx.core.impl;
 
 import io.vertx.core.*;
-import io.vertx.core.impl.transports.JDKTransport;
+import io.vertx.core.impl.transports.NioTransport;
 import io.vertx.core.internal.ServiceHelper;
 import io.vertx.core.internal.VertxBootstrap;
 import io.vertx.core.spi.context.executor.EventExecutorProvider;
@@ -215,10 +215,10 @@ public class VertxBootstrapImpl implements VertxBootstrap {
     if (tr != null) {
       if (!tr.isAvailable()) {
         transportUnavailabilityCause = tr.unavailabilityCause();
-        tr = JDKTransport.INSTANCE;
+        tr = NioTransport.INSTANCE;
       }
     } else {
-      tr = JDKTransport.INSTANCE;
+      tr = NioTransport.INSTANCE;
     }
     return new VertxImpl(
       options,
